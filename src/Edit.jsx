@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Edit() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -12,14 +14,14 @@ function Edit() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:5000/expenses/${id}`)
+    fetch(`${API_URL}/expenses/${id}`)
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    await fetch(`http://localhost:5000/expenses/${id}`, {
+    await fetch(`${API_URL}/expenses/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(items),

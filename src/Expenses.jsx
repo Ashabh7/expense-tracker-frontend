@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Expenses() {
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState("All")
 
   useEffect(() => {
-    fetch("http://localhost:5000/expenses")
+    fetch(`${API_URL}/expenses`)
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, []);
 
   async function deleteItem(id) {
-    await fetch(`http://localhost:5000/expenses/${id}`, {
+    await fetch(`${API_URL}/expenses/${id}`, {
       method: "DELETE",
     })
     setItems(items.filter((item) => item._id !== id))

@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Home() {
   const [items, setItems] = useState({
     name: "",
@@ -8,7 +10,7 @@ function Home() {
   });
 
   function postExpense() {
-    fetch("http://localhost:5000/expenses", {
+    fetch(`${API_URL}/expenses`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(items),
