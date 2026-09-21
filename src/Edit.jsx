@@ -13,14 +13,40 @@ function Edit() {
     category: "",
   });
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   useEffect(() => {
     fetch(`${API_URL}/expenses/${id}`)
-      .then((res) => res.json())
-      .then((data) => setItems(data));
-  }, []);
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to load expense");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setItems(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError("Failed to load expense");
+        setLoading(false);
+      });
+  }, [id]);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!items.name || !items.amount || !items.category) {
+      alert("Please fill all Fields");
+      return;
+    }
+
+    if (Number(items.amount) <= 0) {
+      alert("Amount must be greater than 0");
+      return;
+    }
+
     await fetch(`${API_URL}/expenses/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -30,18 +56,31 @@ function Edit() {
   }
 
   const inputStyle = {
-    backgroundColor: '#1a1a1a',
-    border: '1px solid #c9a227',
-    color: '#f5f5f5',
-    borderRadius: '8px',
-    padding: '12px',
-    width: '100%',
-    outline: 'none'
+    backgroundColor: "#1a1a1a",
+    border: "1px solid #c9a227",
+    color: "#f5f5f5",
+    borderRadius: "8px",
+    padding: "12px",
+    width: "100%",
+    outline: "none",
+  };
+
+  if (loading) {
+    return <p style={{ color: "#c9a227" }}>Loading expense...</p>;
+  }
+
+  if (error) {
+    return <p style={{ color: "#ff6b6b" }}>{error}</p>;
   }
 
   return (
-    <div className="rounded-xl p-6" style={{backgroundColor: '#1a1a1a', border: '1px solid #1a472a'}}>
-      <h1 className="text-2xl font-bold mb-6" style={{color: '#c9a227'}}>Edit Expense</h1>
+    <div
+      className="rounded-xl p-6"
+      style={{ backgroundColor: "#1a1a1a", border: "1px solid #1a472a" }}
+    >
+      <h1 className="text-2xl font-bold mb-6" style={{ color: "#c9a227" }}>
+        Edit Expense
+      </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
@@ -71,7 +110,7 @@ function Edit() {
         <button
           type="submit"
           className="font-semibold p-3 rounded-lg hover:opacity-80"
-          style={{backgroundColor: '#c9a227', color: '#0d0d0d'}}
+          style={{ backgroundColor: "#c9a227", color: "#0d0d0d" }}
         >
           Update Expense
         </button>

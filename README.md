@@ -1,17 +1,119 @@
-# React + Vite
+#  Expense Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A full-stack expense tracking application built with **React, Node.js, Express, and MongoDB**.
 
-Currently, two official plugins are available:
+Users can add, view, edit, delete, and filter their expenses through a responsive web interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Live Demo
 
-## React Compiler
+**Frontend:** https://expense-tracker-frontend-nu-drab.vercel.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Backend:** https://expense-tracker-backend-qlol.onrender.com
 
-## Expanding the Oxlint configuration
+##  Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-"# expense-tracker-frontend" 
+* Add new expenses
+* Edit existing expenses
+* Delete expenses
+* Filter expenses by category
+* Calculate total expenses
+* Form validation
+* Loading states
+* Error handling
+* Empty states
+* Responsive UI
+* REST API
+* MongoDB database
+* Deployed frontend and backend
+
+##  Tech Stack
+
+### Frontend
+
+* React
+* React Router
+* Tailwind CSS
+* Vite
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+
+### Deployment
+
+* Vercel — Frontend
+* Render — Backend
+* MongoDB Atlas — Database
+
+##  Project Structure
+
+```text
+expense-tracker-frontend/
+├── src/
+│   ├── Home.jsx
+│   ├── Expenses.jsx
+│   ├── Edit.jsx
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── public/
+├── .env
+├── .gitignore
+├── package.json
+└── vercel.json
+```
+
+## ⚙️ Run Locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Ashabh7/expense-tracker-frontend.git
+cd expense-tracker-frontend
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Create an environment file
+
+Create a `.env` file in the project root:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+The frontend will run locally using the Vite development server.
+
+##  Backend
+
+The backend repository is available here:
+
+https://github.com/Ashabh7/expense-tracker-backend
+
+##  Project Purpose
+
+This project was built to practice and demonstrate full-stack development concepts including:
+
+* React state management
+* React Router
+* REST API integration
+* CRUD operations
+* Express.js API development
+* MongoDB database operations
+* Form validation
+* Error handling
+* Environment variables
+* Full-stack deployment
